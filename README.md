@@ -30,7 +30,7 @@ This project demonstrates a simple CRUD (Create, Read, Update, Delete) REST API 
 | Spring Web | REST API support |
 | Spring Validation | Input validation |
 
-## 📁 Project Structure
+## Project Structure
 movie-api/
 ├── src/main/java/com/demo/
 │ ├── MovieApiApplication.java # Main entry point
@@ -94,11 +94,11 @@ Content-Type: application/json
   "durationMinutes": 136
 }
 
-#Running the Application
-##Prerequisites
+# Running the Application
+## Prerequisites
 Java 17 or higher
 Maven 3.6+
-##Steps
+## Steps
 Clone/Download the project
 
 Navigate to project directory
@@ -112,3 +112,18 @@ mvn spring-boot:run
 
 Application will start at:
 http://localhost:5000
+
+# testing-the-api
+# Get all movies
+curl http://localhost:8080/api/movies
+
+# Get movie by ID
+curl http://localhost:8080/api/movies/1
+
+# Create a movie
+curl -X POST http://localhost:8080/api/movies \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Test Movie","description":"Test description","genre":"Action","releaseYear":2024,"rating":7.5,"director":"Test Director","durationMinutes":120}'
+
+# Delete a movie
+curl -X DELETE http://localhost:8080/api/movies/1
