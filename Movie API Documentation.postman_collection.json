@@ -1,0 +1,303 @@
+{
+  "info": {
+    "_postman_id": "c86fb5c8-3452-48aa-822d-21a6502e30be",
+    "name": "Movie API Documentation",
+    "description": "\\# 🎬 Movie Management REST API\n\n\\## Overview  \nA RESTful API for managing a movie collection. Built with Spring Boot.\n\n\\## Base URL\n\n[http://localhost:8080/api/movies](http://localhost:8080/api/movies)\n\nStartFragment\n\n```\n## Authentication\nNo authentication required (public API)\n## Content Type\nAll requests use `application/json`\n## Response Codes\n| Code | Description |\n|------|-------------|\n| 200 | Success |\n| 201 | Created |\n| 400 | Bad Request (validation error) |\n| 404 | Not Found |\n| 500 | Server Error |\n\n ```\n\nEndFragment\n\n[](https://postman.postman.co/documentation/24552533-5bead607-0197-4e1d-87d4-3160bc7631c1?entity=&branch=&version=)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46024612"
+  },
+  "item": [
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "GetAllMovies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/movies",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "movies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GetAllMovies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/movies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "movies"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "## Get All Movies\r\n\r\nRetrieves a list of all movies in the database.\r\n\r\n### Request\r\n- **Method:** GET\r\n- **URL:** `/api/movies`\r\n- **Body:** None required\r\n\r\n### Response\r\nReturns an array of movie objects.\r\n\r\n### Example Response\r\n```json\r\n[\r\n  {\r\n    \"id\": 1,\r\n    \"title\": \"Inception\",\r\n    \"description\": \"A thief who enters the dreams of others\",\r\n    \"genre\": \"Sci-Fi\",\r\n    \"releaseYear\": 2010,\r\n    \"rating\": 8.8,\r\n    \"director\": \"Christopher Nolan\",\r\n    \"durationMinutes\": 148\r\n  }\r\n]\r\n\r\nStatus Codes\r\nCode\tDescription\r\n200\tSuccess - Returns movie list\r\n500\tServer Error"
+            }
+          ]
+        },
+        {
+          "name": "GetMoviesByID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/movies/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "movies",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GetMoviesByID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/movies/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "movies",
+                    "1"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "# Get Movie by ID\r\n\r\nRetrieves a single movie by its unique ID.\r\n\r\n### Request\r\n- **Method:** GET\r\n- **URL:** `/api/movies/{id}`\r\n\r\n### Path Parameters\r\n| Parameter | Type | Required | Description |\r\n|-----------|------|----------|-------------|\r\n| id | Long | Yes | Unique movie identifier |\r\n\r\n### Example Request\r\nGET /api/movies/1\r\n\r\n\r\n### Success Response (200 OK)\r\n```json\r\n{\r\n  \"id\": 1,\r\n  \"title\": \"Inception\",\r\n  \"description\": \"A thief who enters the dreams of others\",\r\n  \"genre\": \"Sci-Fi\",\r\n  \"releaseYear\": 2010,\r\n  \"rating\": 8.8,\r\n  \"director\": \"Christopher Nolan\",\r\n  \"durationMinutes\": 148\r\n}\r\n\r\nError Response (404 Not Found)\r\n\r\n{\r\n  \"timestamp\": \"2024-01-15T10:30:00\",\r\n  \"status\": 404,\r\n  \"error\": \"Not Found\",\r\n  \"message\": \"Movie not found with ID: 999\"\r\n}\r\n\r\n\r\nStatus Codes\r\nCode\tDescription\r\n200\tSuccess - Returns movie\r\n404\tMovie not found\r\n500\tServer Error"
+            }
+          ]
+        },
+        {
+          "name": "CreateMovie",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"The Matrix\",\r\n  \"description\": \"A computer hacker learns about reality\",\r\n  \"genre\": \"Sci-Fi\",\r\n  \"releaseYear\": 1999,\r\n  \"rating\": 8.7,\r\n  \"director\": \"The Wachowskis\",\r\n  \"durationMinutes\": 136\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/movies",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "movies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "CreateMovie",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"The Matrix\",\r\n  \"description\": \"A computer hacker learns about reality\",\r\n  \"genre\": \"Sci-Fi\",\r\n  \"releaseYear\": 1999,\r\n  \"rating\": 8.7,\r\n  \"director\": \"The Wachowskis\",\r\n  \"durationMinutes\": 136\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/movies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "movies"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "## Create Movie\r\n\r\nCreates a new movie in the database.\r\n\r\n### Request\r\n- **Method:** POST\r\n- **URL:** `/api/movies`\r\n- **Content-Type:** application/json\r\n\r\n### Request Body\r\n\r\n| Field | Type | Required | Description | Constraints |\r\n|-------|------|----------|-------------|-------------|\r\n| title | String | Yes | Movie title | 1-200 characters |\r\n| description | String | Yes | Movie synopsis | Max 2000 characters |\r\n| genre | String | Yes | Movie genre | - |\r\n| releaseYear | Integer | Yes | Year of release | 1888-2035 |\r\n| rating | Double | No | Movie rating | 0-10 |\r\n| director | String | Yes | Director name | - |\r\n| durationMinutes | Integer | No | Duration in minutes | Min 1 |\r\n\r\n### Example Request Body\r\n```json\r\n{\r\n  \"title\": \"The Matrix\",\r\n  \"description\": \"A computer hacker learns about the true nature of reality\",\r\n  \"genre\": \"Sci-Fi\",\r\n  \"releaseYear\": 1999,\r\n  \"rating\": 8.7,\r\n  \"director\": \"The Wachowskis\",\r\n  \"durationMinutes\": 136\r\n}\r\n\r\n\r\nSuccess Response (201 Created)\r\n\r\n{\r\n  \"id\": 4,\r\n  \"title\": \"The Matrix\",\r\n  \"description\": \"A computer hacker learns about the true nature of reality\",\r\n  \"genre\": \"Sci-Fi\",\r\n  \"releaseYear\": 1999,\r\n  \"rating\": 8.7,\r\n  \"director\": \"The Wachowskis\",\r\n  \"durationMinutes\": 136\r\n}\r\n\r\n\r\nValidation Error Response (400 Bad Request)\r\n\r\n{\r\n  \"timestamp\": \"2024-01-15T10:30:00\",\r\n  \"status\": 400,\r\n  \"error\": \"Validation Failed\",\r\n  \"message\": \"Invalid input data. Please check the errors.\",\r\n  \"errors\": {\r\n    \"title\": \"Movie title is required\",\r\n    \"releaseYear\": \"Release year is required\"\r\n  }\r\n}\r\n\r\nStatus Codes\r\nCode\tDescription\r\n201\tCreated - Movie added successfully\r\n400\tBad Request - Validation failed\r\n500\tServer Error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "GetMoviesBYGenre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/movies/genre/Action",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "movies",
+                "genre",
+                "Action"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GetMoviesBYGenre",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/movies/genre/Action",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "movies",
+                    "genre",
+                    "Action"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "## Get Movies by Genre\r\n\r\nRetrieves all movies of a specific genre.\r\n\r\n### Request\r\n- **Method:** GET\r\n- **URL:** `/api/movies/genre/{genre}`\r\n\r\n### Path Parameters\r\n| Parameter | Type | Required | Description |\r\n|-----------|------|----------|-------------|\r\n| genre | String | Yes | Genre to filter by |\r\n\r\n### Available Genres\r\n- Action\r\n- Comedy\r\n- Drama\r\n- Sci-Fi\r\n- Horror\r\n- Romance\r\n- Thriller\r\n\r\n### Example Request\r\n\r\nGET /api/movies/genre/Sci-Fi\r\n\r\n\r\n### Success Response (200 OK)\r\n```json\r\n[\r\n  {\r\n    \"id\": 1,\r\n    \"title\": \"Inception\",\r\n    \"genre\": \"Sci-Fi\",\r\n    ...\r\n  },\r\n  {\r\n    \"id\": 3,\r\n    \"title\": \"The Matrix\",\r\n    \"genre\": \"Sci-Fi\",\r\n    ...\r\n  }\r\n]\r\n\r\nStatus Codes\r\nCode\tDescription\r\n200\tSuccess - Returns matching movies\r\n500\tServer Error"
+            }
+          ]
+        },
+        {
+          "name": "GetMoviesCount",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/movies/count",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "movies",
+                "count"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GetMoviesCount",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/movies/count",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "movies",
+                    "count"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "## Get Movie Count\r\n\r\nReturns the total number of movies in the database.\r\n\r\n### Request\r\n- **Method:** GET\r\n- **URL:** `/api/movies/count`\r\n\r\n### Success Response (200 OK)\r\n```json\r\n{\r\n  \"count\": 5\r\n}\r\n\r\nStatus Codes\r\nCode\tDescription\r\n200\tSuccess - Returns count\r\n500\tServer Error"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://postman-echo.com"
+    }
+  ]
+}
