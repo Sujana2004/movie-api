@@ -1,9 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add New Movie</title>
+    <meta charset="UTF-8">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -19,11 +18,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        h1 { color: #333; text-align: center; margin-bottom: 30px; }
         .nav { margin-bottom: 25px; }
         .btn {
             display: inline-block;
@@ -34,19 +29,11 @@
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            font-size: 14px;
         }
         .btn-secondary { background: #6c757d; }
         .btn-success { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
         .required { color: #dc3545; }
         input, textarea, select {
             width: 100%;
@@ -54,25 +41,14 @@
             border: 2px solid #e9ecef;
             border-radius: 8px;
             font-size: 15px;
-            transition: border-color 0.2s;
         }
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #667eea;
         }
-        .error {
-            color: #dc3545;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-        .btn-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .btn-container .btn {
-            padding: 14px 30px;
-            font-size: 16px;
-        }
+        .error { color: #dc3545; font-size: 13px; margin-top: 5px; }
+        .btn-container { text-align: center; margin-top: 30px; }
+        .btn-container .btn { padding: 14px 30px; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -84,65 +60,64 @@
         
         <h1>+ Add New Movie</h1>
         
-        <form:form action="/web/movies/add" method="post" modelAttribute="movie">
+        <form th:action="@{/web/movies/add}" th:object="${movie}" method="post">
             
             <div class="form-group">
                 <label>Title <span class="required">*</span></label>
-                <form:input path="title" placeholder="Enter movie title"/>
-                <form:errors path="title" cssClass="error"/>
+                <input type="text" th:field="*{title}" placeholder="Enter movie title">
+                <div th:if="${#fields.hasErrors('title')}" class="error" th:errors="*{title}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Description <span class="required">*</span></label>
-                <form:textarea path="description" rows="3" placeholder="Enter movie description"/>
-                <form:errors path="description" cssClass="error"/>
+                <textarea th:field="*{description}" rows="3" placeholder="Enter description"></textarea>
+                <div th:if="${#fields.hasErrors('description')}" class="error" th:errors="*{description}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Genre <span class="required">*</span></label>
-                <form:select path="genre">
-                    <form:option value="">-- Select Genre --</form:option>
-                    <form:option value="Action">Action</form:option>
-                    <form:option value="Comedy">Comedy</form:option>
-                    <form:option value="Drama">Drama</form:option>
-                    <form:option value="Sci-Fi">Sci-Fi</form:option>
-                    <form:option value="Horror">Horror</form:option>
-                    <form:option value="Romance">Romance</form:option>
-                    <form:option value="Thriller">Thriller</form:option>
-                </form:select>
-                <form:errors path="genre" cssClass="error"/>
+                <select th:field="*{genre}">
+                    <option value="">-- Select Genre --</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+                <div th:if="${#fields.hasErrors('genre')}" class="error" th:errors="*{genre}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Release Year <span class="required">*</span></label>
-                <form:input path="releaseYear" type="number" placeholder="e.g., 2024"/>
-                <form:errors path="releaseYear" cssClass="error"/>
+                <input type="number" th:field="*{releaseYear}" placeholder="e.g., 2024">
+                <div th:if="${#fields.hasErrors('releaseYear')}" class="error" th:errors="*{releaseYear}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Rating (0-10)</label>
-                <form:input path="rating" type="number" step="0.1" min="0" max="10" placeholder="e.g., 8.5"/>
-                <form:errors path="rating" cssClass="error"/>
+                <input type="number" step="0.1" min="0" max="10" th:field="*{rating}" placeholder="e.g., 8.5">
+                <div th:if="${#fields.hasErrors('rating')}" class="error" th:errors="*{rating}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Director <span class="required">*</span></label>
-                <form:input path="director" placeholder="Enter director name"/>
-                <form:errors path="director" cssClass="error"/>
+                <input type="text" th:field="*{director}" placeholder="Enter director name">
+                <div th:if="${#fields.hasErrors('director')}" class="error" th:errors="*{director}">Error</div>
             </div>
             
             <div class="form-group">
                 <label>Duration (minutes)</label>
-                <form:input path="durationMinutes" type="number" placeholder="e.g., 120"/>
-                <form:errors path="durationMinutes" cssClass="error"/>
+                <input type="number" th:field="*{durationMinutes}" placeholder="e.g., 120">
             </div>
             
             <div class="btn-container">
-                <button type="submit" class="btn btn-success"> Save Movie</button>
+                <button type="submit" class="btn btn-success">💾 Save Movie</button>
                 <a href="/web/movies" class="btn btn-secondary">Cancel</a>
             </div>
             
-        </form:form>
+        </form>
     </div>
 </body>
 </html>

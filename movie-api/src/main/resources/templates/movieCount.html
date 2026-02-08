@@ -1,8 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Movie Statistics</title>
+    <meta charset="UTF-8">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -31,11 +31,7 @@
             line-height: 1;
             margin: 30px 0;
         }
-        .label {
-            font-size: 20px;
-            color: #666;
-            margin-bottom: 40px;
-        }
+        .label { font-size: 20px; color: #666; margin-bottom: 40px; }
         .btn {
             display: inline-block;
             padding: 15px 25px;
@@ -43,7 +39,6 @@
             color: white;
             text-decoration: none;
             border-radius: 8px;
-            font-size: 15px;
         }
         .btn-secondary { background: #6c757d; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
@@ -54,7 +49,7 @@
     <div class="container">
         <h1> Movie Statistics</h1>
         
-        <div class="count-display">${count}</div>
+        <div class="count-display" th:text="${count}">0</div>
         
         <div class="label">Total Movies in Database</div>
         
