@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/web")
 public class MovieWebController {
-    
+    //This controller is to view in browser and will be easy for others to create movie during deployment
     private final MovieService movieService;
     
     public MovieWebController(MovieService movieService) {
