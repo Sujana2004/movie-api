@@ -24,11 +24,12 @@ This project demonstrates a simple CRUD (Create, Read, Update, Delete) REST API 
 
 | Technology | Purpose |
 |------------|---------|
-| Java 17 | Programming language |
+| Java 21 | Programming language |
 | Spring Boot 3.2 | Application framework |
 | Maven | Build tool & dependency management |
 | Spring Web | REST API support |
 | Spring Validation | Input validation |
+| Thymeleaf| to view html files to test on browser|
 
 ## Project Structure
 movie-api/
