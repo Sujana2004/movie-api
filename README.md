@@ -125,5 +125,4 @@ curl -X POST http://localhost:8080/api/movies \
   -H "Content-Type: application/json" \
   -d '{"title":"Test Movie","description":"Test description","genre":"Action","releaseYear":2024,"rating":7.5,"director":"Test Director","durationMinutes":120}'
 
-# Delete a movie
-curl -X DELETE http://localhost:8080/api/movies/1
+
